@@ -2,7 +2,7 @@ using System.IO;
 
 namespace Stitch.Compilers
 {
-    class JavaScriptCompiler : ICompile
+    public class JavaScriptCompiler : ICompile
     {
         public bool Handles(string Extension)
         {
