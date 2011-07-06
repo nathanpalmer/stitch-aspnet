@@ -7,13 +7,15 @@ namespace Stitch
 {
     public class Package : IPackage
     {
+        public string[] Dependencies;
         public string[] Paths { get; set; }
         public string Identifier { get; set; }
         public string Root { get; set; }
         public List<ICompile> Compilers { get; set; }
 
-        public Package(string Root, string[] Paths, string Identifier = "require", IEnumerable<ICompile> Compilers = null)
+        public Package(string Root, string[] Paths, string[] Dependencies, string Identifier = "require", IEnumerable<ICompile> Compilers = null)
         {
+            this.Dependencies = Dependencies;
             this.Identifier = Identifier;
             this.Compilers = new List<ICompile>(Compilers ?? new ICompile[0]);
             this.Root = Root.ToLower();
@@ -23,6 +25,12 @@ namespace Stitch
         public string Compile()
         {
             var sw = new StringWriter();
+
+            foreach (var dep in Dependencies)
+            {
+                sw.Write(File.ReadAllText(Path.Combine(Root, dep)));
+            }
+
             sw.Write(@"
 (function(/*! Stitch !*/) {
   if (!this." + Identifier + @") {

@@ -1,7 +1,7 @@
 using System.IO;
 using CoffeeSharp;
 
-namespace Stitch
+namespace Stitch.Compilers
 {
     public class CoffeeScriptCompiler : ICompile
     {

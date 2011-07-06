@@ -1,0 +1,1 @@
+﻿var unaltered = "JavaScript File";
