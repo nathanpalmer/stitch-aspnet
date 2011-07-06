@@ -71,7 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Stitch-AspNet\Stitch.csproj">
+    <ProjectReference Include="..\Stitch\Stitch.csproj">
       <Project>{7265ABF6-18CE-4D99-B194-A20D11620FD5}</Project>
       <Name>Stitch</Name>
     </ProjectReference>

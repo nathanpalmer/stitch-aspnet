@@ -2,7 +2,7 @@ import System
 import System.IO
 
 # Project Information
-title            = "Stitch-AspNet"
+title            = "Stitch"
 company          = ""
 version_major    = 0
 version_minor    = 1
@@ -13,7 +13,7 @@ repository_type  = "git"
 
 # Build Information
 solution_folder  = "Source"
-solution_file    = "Stitch-AspNet.sln"
+solution_file    = "Stitch.sln"
 configuration    = "Release"
 dotnet_version   = "4.0"
 build_directory  = DirectoryInfo("Build/${configuration}")
@@ -34,7 +34,7 @@ target clean:
   rmdir("Build")
   
 target binaries:
-  exec("Tools\\NuGet\\NuGet.exe install ${solution_folder}\\Stitch-AspNet\\packages.config -o Libraries")
+  exec("Tools\\NuGet\\NuGet.exe install ${solution_folder}\\Stitch\\packages.config -o Libraries")
   
 target compile, (assemblyInfo):
   print "Compiling ${solution_file}"
