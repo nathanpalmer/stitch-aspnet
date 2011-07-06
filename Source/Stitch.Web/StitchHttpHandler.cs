@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Reflection;
 using System.Web;
-using Stitch.Compilers;
 
 namespace Stitch.Web
 {
     public class StitchHttpHandler : IHttpHandler
     {
-        private static StitchConfigurationSection.StitchConfiguration configuration;
-        private static List<ICompile> compilers;
+        private static readonly StitchConfigurationSection.StitchConfiguration configuration;
+        private static readonly List<ICompile> compilers;
 
         static StitchHttpHandler()
         {
@@ -25,7 +23,13 @@ namespace Stitch.Web
 
         public void ProcessRequest(HttpContext context)
         {
-            var package = new Package(context.Server.MapPath("."), configuration.Paths, configuration.Dependencies, configuration.Identifier ?? "require", compilers);
+            var package = new Package(
+                context.Server.MapPath("."),
+                configuration.Paths,
+                configuration.Dependencies,
+                configuration.Identifier ?? "require",
+                compilers);
+
             context.Response.ContentType = "text/javascript";
             context.Response.Write(package.Compile());
         }
