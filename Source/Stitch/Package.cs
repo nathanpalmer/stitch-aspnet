@@ -5,17 +5,17 @@ using System.Linq;
 
 namespace Stitch
 {
-    public class Package
+    public class Package : IPackage
     {
         public string[] Paths { get; set; }
         public string Identifier { get; set; }
-        protected string Root { get; set; }
-        protected List<ICompile> Compilers { get; set; }
+        public string Root { get; set; }
+        public List<ICompile> Compilers { get; set; }
 
-        public Package(string Root, string[] Paths, string Identifier = "require")
+        public Package(string Root, string[] Paths, string Identifier = "require", IEnumerable<ICompile> Compilers = null)
         {
             this.Identifier = Identifier;
-            Compilers = new List<ICompile>(new[] { new CoffeeScriptCompiler() });
+            this.Compilers = new List<ICompile>(Compilers ?? new ICompile[0]);
             this.Root = Root.ToLower();
             this.Paths = Paths;
         }
@@ -85,7 +85,9 @@ namespace Stitch
                     sw.Write(i == 0 ? "" : ", ");
                     sw.Write(string.Format("\"{0}\"", item.FullName.ToLower().Replace(rootPath,"").Replace("\\", "/").Replace(item.Extension,"")));
                     sw.Write(": function(exports, require, module) ");
-                    sw.Write("{" + string.Join("", Compilers.Where(c => c.Handles(item.Extension)).Select(c => c.Compile(item))) + "}");
+
+                    var compiler = Compilers.Where(c => c.Handles(item.Extension)).Single();
+                    sw.Write("{" + compiler.Compile(item) + "}");
 
                     i++;
                 }
