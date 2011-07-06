@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stitch.Web {
+namespace Stitch.Tests.Web {
     
     
     public partial class Default {
