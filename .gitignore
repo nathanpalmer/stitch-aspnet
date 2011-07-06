@@ -31,3 +31,5 @@ _ReSharper*/
 [Bb]uild[Ll]og.*
 *.[Pp]ublish.xml
 Source/SolutionVersion.cs
+[Ll]ibraries/
+[Bb]uild/
