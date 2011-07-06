@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch-AspNet", "Stitch-Asp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch-AspNet-Tests", "Stitch-AspNet-Tests\Stitch-AspNet-Tests.csproj", "{BCAE0CE6-2B3A-4F71-B13B-C858E34FA632}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch-AspNet-Web", "Stitch-AspNet-Web\Stitch-AspNet-Web.csproj", "{57BA28AD-F5B7-482F-83F7-DBCAEE0817CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{BCAE0CE6-2B3A-4F71-B13B-C858E34FA632}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCAE0CE6-2B3A-4F71-B13B-C858E34FA632}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCAE0CE6-2B3A-4F71-B13B-C858E34FA632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57BA28AD-F5B7-482F-83F7-DBCAEE0817CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57BA28AD-F5B7-482F-83F7-DBCAEE0817CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57BA28AD-F5B7-482F-83F7-DBCAEE0817CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57BA28AD-F5B7-482F-83F7-DBCAEE0817CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
