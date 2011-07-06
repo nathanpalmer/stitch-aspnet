@@ -4,8 +4,8 @@ import System.IO
 # Project Information
 title            = "Stitch-AspNet"
 company          = ""
-version_major    = 1
-version_minor    = 0
+version_major    = 0
+version_minor    = 1
 version_build    = 0
 version_revision = 0
 repository_url   = ""
