@@ -50,19 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compilers\CoffeeScriptCompiler.cs" />
-    <Compile Include="ICompile.cs" />
-    <Compile Include="IPackage.cs" />
-    <Compile Include="Compilers\JavaScriptCompiler.cs" />
-    <Compile Include="Package.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="StitchHttpHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stitch.Core\Stitch.Core.csproj">
+      <Project>{E477FDCE-5F05-400E-B2F3-F568896CF2F2}</Project>
+      <Name>Stitch.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
