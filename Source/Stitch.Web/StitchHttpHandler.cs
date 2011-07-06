@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using Stitch.Compilers;
 
-namespace Stitch
+namespace Stitch.Web
 {
     public class StitchHttpHandler : IHttpHandler
     {

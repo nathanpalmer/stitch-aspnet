@@ -33,7 +33,7 @@ target clean:
   rmdir("Build")
   
 target binaries:
-  exec("Tools\\NuGet\\NuGet.exe install ${solution_folder}\\Stitch\\packages.config -o Libraries")
+  exec("Tools\\NuGet\\NuGet.exe install ${solution_folder}\\Stitch.Core\\packages.config -o Libraries")
   
 target compile, (assemblyInfo):
   print "Compiling ${solution_file}"
@@ -46,7 +46,9 @@ target compile, (assemblyInfo):
 target package:
   package_dir = "Build/Package"
   mkdir package_dir
-  cp("Build/${configuration}/Stitch.dll", package_dir + "/Stitch.dll")
+  cp("Build/${configuration}/Stitch.Core.dll", package_dir + "/Stitch.Core.dll")
+  cp("Build/${configuration}/Stitch.Web.dll", package_dir + "/Stitch.Web.dll")
+  cp("Build/${configuration}/Stitch.exe", package_dir + "/Stitch.exe")
   zip(package_dir, String.Format("Build/{4}-{0}.{1}.{2}.{3}.zip", version_major, version_minor, version_build, version_revision, title))
   rmdir package_dir
   

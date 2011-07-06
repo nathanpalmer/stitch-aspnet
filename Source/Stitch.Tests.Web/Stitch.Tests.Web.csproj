@@ -75,6 +75,12 @@
     <None Include="app\controllers\controller1.coffee" />
     <None Include="app\controllers\controller2.coffee" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stitch.Web\Stitch.Web.csproj">
+      <Project>{4C897D61-CAE7-457B-B8BA-F50E3976012C}</Project>
+      <Name>Stitch.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
