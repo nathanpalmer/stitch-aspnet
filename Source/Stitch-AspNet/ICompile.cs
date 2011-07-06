@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Stitch_AspNet
+namespace Stitch
 {
     public interface ICompile
     {

@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Stitch_AspNet
+namespace Stitch
 {
     public class StitchHttpHandler : IHttpHandler 
     {

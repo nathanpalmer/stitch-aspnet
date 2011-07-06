@@ -10,8 +10,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Stitch_AspNet_Web</RootNamespace>
-    <AssemblyName>Stitch-AspNet-Web</AssemblyName>
+    <RootNamespace>Stitch.Web</RootNamespace>
+    <AssemblyName>Stitch.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
@@ -71,9 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Stitch-AspNet\Stitch-AspNet.csproj">
+    <ProjectReference Include="..\Stitch-AspNet\Stitch.csproj">
       <Project>{7265ABF6-18CE-4D99-B194-A20D11620FD5}</Project>
-      <Name>Stitch-AspNet</Name>
+      <Name>Stitch</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

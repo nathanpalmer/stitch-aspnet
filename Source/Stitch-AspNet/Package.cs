@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
-namespace Stitch_AspNet
+namespace Stitch
 {
     public class Package
     {
@@ -92,11 +91,6 @@ namespace Stitch_AspNet
                 }
             }
 
-            var items = new List<FileInfo>(Paths.SelectMany(p => GatherSources(new FileInfo(p))));
-            for (int i = 0; i < items.Count; i++)
-            {
-                
-            }
             sw.Write("});" + Environment.NewLine);
             return sw.ToString();
         }

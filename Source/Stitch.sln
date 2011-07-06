@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch-AspNet", "Stitch-AspNet\Stitch-AspNet.csproj", "{7265ABF6-18CE-4D99-B194-A20D11620FD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch", "Stitch-AspNet\Stitch.csproj", "{7265ABF6-18CE-4D99-B194-A20D11620FD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch-AspNet-Tests", "Stitch-AspNet-Tests\Stitch-AspNet-Tests.csproj", "{BCAE0CE6-2B3A-4F71-B13B-C858E34FA632}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch.Tests", "Stitch-AspNet-Tests\Stitch.Tests.csproj", "{BCAE0CE6-2B3A-4F71-B13B-C858E34FA632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch-AspNet-Web", "Stitch-AspNet-Web\Stitch-AspNet-Web.csproj", "{57BA28AD-F5B7-482F-83F7-DBCAEE0817CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch.Web", "Stitch-AspNet-Web\Stitch.Web.csproj", "{57BA28AD-F5B7-482F-83F7-DBCAEE0817CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
