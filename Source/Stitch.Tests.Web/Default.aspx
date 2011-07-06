@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Test</title>
-    <script type="text/javascript" src="/test.sapp"></script>
+    <script type="text/javascript" src="/test.stitch"></script>
     <script type="text/javascript">
         var Controller1 = require("controllers/controller1");
         var controller = new Controller1();
