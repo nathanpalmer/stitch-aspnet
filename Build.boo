@@ -21,8 +21,14 @@ package_dir      = "Build/${configuration}"
 
 # Targets
 desc "Default target"
-target default, (clean, binaries, compile, package):
-  pass
+target default:
+  try:
+    call clean
+    call binaries
+    call compile
+    call package
+  except e:
+    print e
   
 target clean:
   rmdir("Build")
@@ -47,7 +53,20 @@ target getRevision:
     return
     
   if (repository_type == "git"):
-    version_revision = getRevisionMercurial(repository_url)
+    exec("git describe --tags --long", { 'Output': '_summary.txt' })
+    
+    file = StreamReader("_summary.txt")
+    line = file.ReadLine()
+    file.Close()
+    file.Dispose()
+  
+    rm("_summary.txt")
+    
+    parts = line.Split(char('-'))  
+    
+    revision = 0
+    if (int.TryParse(parts[1].Trim(),revision)):
+      version_revision = revision
     
   if (version_revision > 0):  
     return
