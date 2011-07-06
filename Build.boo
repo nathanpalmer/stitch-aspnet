@@ -17,7 +17,6 @@ solution_file    = "Stitch.sln"
 configuration    = "Release"
 dotnet_version   = "4.0"
 build_directory  = DirectoryInfo("Build/${configuration}")
-package_dir      = "Build/${configuration}"
 
 # Targets
 desc "Default target"
@@ -45,7 +44,11 @@ target compile, (assemblyInfo):
     .properties = { 'OutDir': build_directory.FullName+"/" }
 
 target package:
+  package_dir = "Build/Package"
+  mkdir package_dir
+  cp("Build/${configuration}/Stitch.dll", package_dir + "/Stitch.dll")
   zip(package_dir, String.Format("Build/{4}-{0}.{1}.{2}.{3}.zip", version_major, version_minor, version_build, version_revision, title))
+  rmdir package_dir
   
 target getRevision:
   int.TryParse(env("build.vcs.number"), version_revision)
