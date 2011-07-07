@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Web;
 
 namespace Stitch.Web
@@ -23,12 +24,26 @@ namespace Stitch.Web
 
         public void ProcessRequest(HttpContext context)
         {
-            var package = new Package(
-                context.Server.MapPath("."),
-                configuration.Paths,
-                configuration.Dependencies,
-                configuration.Identifier ?? "require",
-                compilers);
+            Package package;
+            var file = configuration.Files.Where(f => f.Name.Equals(context.Request.Path, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            if (file != null)
+            {
+                package = new Package(
+                    context.Server.MapPath("."),
+                    file.Paths,
+                    file.Dependencies,
+                    file.Identifier ?? configuration.Identifier ?? "require",
+                    compilers);
+            }
+            else
+            {
+                package = new Package(
+                    context.Server.MapPath("."),
+                    configuration.Paths,
+                    configuration.Dependencies,
+                    configuration.Identifier ?? "require",
+                    compilers);
+            }
 
             context.Response.ContentType = "text/javascript";
             context.Response.Write(package.Compile());

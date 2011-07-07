@@ -23,6 +23,9 @@ namespace Stitch.Web
         [XmlRoot("stitch")]
         public class StitchConfiguration
         {
+            [XmlAttribute("name")]
+            public string Name { get; set; }
+
             [XmlArray("paths")]
             [XmlArrayItem("path")]
             public string[] Paths { get; set; }
@@ -37,6 +40,10 @@ namespace Stitch.Web
             [XmlArray("compilers")]
             [XmlArrayItem("compiler")]
             public StitchConfigurationCompiler[] Compilers { get; set; }
+
+            [XmlArray("files")]
+            [XmlArrayItem("file")]
+            public StitchConfiguration[] Files { get; set; }
         }
 
         [XmlRoot("compiler")]
@@ -44,6 +51,9 @@ namespace Stitch.Web
         {
             [XmlAttribute("type")]
             public string Type { get; set; }
-        }
+
+            [XmlAttribute("extension")]
+            public string Extension { get; set; }
+       }
     }
 }
