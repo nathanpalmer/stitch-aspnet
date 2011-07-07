@@ -33,3 +33,4 @@ _ReSharper*/
 Source/SolutionVersion.cs
 [Ll]ibraries/
 [Bb]uild/
+*.nupkg

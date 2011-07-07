@@ -91,3 +91,6 @@ target assemblyInfo, (getRevision):
     .comVisible = false
     .companyName = company
     .productName = title    
+    
+target nuget:
+  exec(""".\Tools\NuGet\NuGet.exe pack .\Stitch.nuspec""")
