@@ -8,6 +8,7 @@ version_major    = 0
 version_minor    = 1
 version_build    = 0
 version_revision = 0
+version          = "0.1.0.0"
 repository_url   = ""
 repository_type  = "git"
 
@@ -24,6 +25,7 @@ target default:
   try:
     call clean
     call binaries
+    call assemblyInfo
     call compile
     call package
     call nuget
@@ -36,7 +38,7 @@ target clean:
 target binaries:
   exec("Tools\\NuGet\\NuGet.exe install ${solution_folder}\\Stitch.Core\\packages.config -o Libraries")
   
-target compile, (assemblyInfo):
+target compile:
   print "Compiling ${solution_file}"
   with msbuild():
     .file = Path.Combine(solution_folder, solution_file)
@@ -50,7 +52,7 @@ target package:
   cp("Build/${configuration}/Stitch.Core.dll", package_dir + "/Stitch.Core.dll")
   cp("Build/${configuration}/Stitch.Web.dll", package_dir + "/Stitch.Web.dll")
   cp("Build/${configuration}/Stitch.exe", package_dir + "/Stitch.exe")
-  zip(package_dir, String.Format("Build/{4}-{0}.{1}.{2}.{3}.zip", version_major, version_minor, version_build, version_revision, title))
+  zip(package_dir, String.Format("Build/{4}.{0}.{1}.{2}.{3}.zip", version_major, version_minor, version_build, version_revision, title))
   rmdir package_dir
   
 target getRevision:
@@ -79,13 +81,13 @@ target getRevision:
   else:
     raise "Unable to determine repository revision"
     
-desc "Create the assembly info"
 target assemblyInfo, (getRevision):
   print "Generating SolutionVersion.cs"
+  version = String.Format("{0}.{1}.{2}.{3}", version_major, version_minor, version_build, version_revision)
   with generate_assembly_info():
     .file = "${solution_folder}/SolutionVersion.cs"
-    .version = String.Format("{0}.{1}.{2}.{3}", version_major, version_minor, version_build, version_revision)
-    .fileVersion = String.Format("{0}.{1}.{2}.{3}", version_major, version_minor, version_build, version_revision)
+    .version = version
+    .fileVersion = version
     .title = title
     .description  = String.Format("{0} is a product of {1}", title, company)
     .copyright = String.Format("Copyright {0} {1}", DateTime.Now.Year, company)
@@ -93,5 +95,38 @@ target assemblyInfo, (getRevision):
     .companyName = company
     .productName = title    
     
-target nuget:
-  exec(""".\Tools\NuGet\NuGet.exe pack .\Stitch.nuspec""")
+target nuget, (assemblyInfo):
+  rm("Stitch.nuspec") if File.Exists("Stitch.nuspec")
+  file = StreamWriter("Stitch.nuspec")
+  file.Write("""<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Stitch</id>
+        <version>${version}</version>
+        <authors>Nathan Palmer</authors>
+        <description>Develop and test your JavaScript applications as CommonJS modules in Node.js. Then __Stitch__ them together to run in the browser. Port of Sam Stephenson's Stitch.</description>
+        <language>en-GB</language>
+        <projectUrl>https://github.com/nathanpalmer/stitch-aspnet</projectUrl>
+        <licenseUrl>https://github.com/nathanpalmer/stitch-aspnet/blob/master/LICENSE.txt</licenseUrl>
+        <dependencies>
+            <dependency id="CoffeeSharp" version="0.2" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="Build\Release\Stitch.Core.dll"
+              target="lib" />
+        <file src="Build\Release\Stitch.Web.dll"
+              target="lib" />
+        <file src="Build\Release\Stitch.exe"
+              target="lib" />
+        <file src="LICENSE.txt"
+              target="" />
+        <file src="Web.config.transform"
+              target="content" />
+    </files>
+</package>
+  """)
+  file.Close()
+  exec(""".\Tools\NuGet\NuGet.exe pack .\Stitch.nuspec -OutputDirectory Build""")
+  rm("Stitch.nuspec")
+  
