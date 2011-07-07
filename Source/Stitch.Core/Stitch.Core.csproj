@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Compilers\CoffeeScriptCompiler.cs" />
     <Compile Include="Compilers\JavaScriptCompiler.cs" />
+    <Compile Include="Compilers\jQueryTemplateCompiler.cs" />
     <Compile Include="ICompile.cs" />
     <Compile Include="IPackage.cs" />
     <Compile Include="Package.cs" />

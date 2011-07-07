@@ -53,6 +53,10 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="lib\dep.js" />
+    <Content Include="scripts\lib\jquery-1.6.2.js" />
+    <Content Include="scripts\lib\jquery-1.6.2.min.js" />
+    <Content Include="scripts\lib\jquery.tmpl.js" />
+    <Content Include="scripts\lib\jquery.tmpl.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -77,6 +81,7 @@
     <None Include="app\controllers\controller1.coffee" />
     <None Include="app\controllers\controller2.coffee" />
     <None Include="scripts\app\controllers\test.coffee" />
+    <None Include="scripts\app\views\view.tmpl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stitch.Web\Stitch.Web.csproj">

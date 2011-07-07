@@ -7,16 +7,14 @@
     <title>Test</title>
     <script type="text/javascript" src="/test.stitch"></script>
     <script type="text/javascript">
-        var Controller1 = require("controllers/controller1");
-        var controller = new Controller1();
-        controller.test();
+        $(document).ready(function () {
+            var Test = require("controllers/test");
+            var test = new Test();
+            test.append();
+        })
     </script>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
+    <div id="content"></div>
 </body>
 </html>
