@@ -22,9 +22,24 @@ This reference will get caught by the HttpHandler and compile the stiched versio
 
 # Configuration
 
-The nuget package will add a new section to your Web.config under the section header <stitch>. You can configure several different options here.
-
+The nuget package will add three things to your Web.config.
+  1. Define a new section called stitch
+  2. Add the HttpHandler for all *.stitch files
+  3. Add the stitch section
+  
 ```xml
+<configuration>
+  <configSections>
+    <section name="stitch" type="Stitch.Web.StitchConfigurationSection, Stitch.Web"/>
+  </configSections>
+
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <httpHandlers>
+      <add type="Stitch.Web.StitchHttpHandler, Stitch.Web" verb="*" path="*.stitch" />
+    </httpHandlers>
+  </system.web>
+
   <stitch>
     <paths>
       <path>scripts/app</path>
@@ -39,7 +54,11 @@ The nuget package will add a new section to your Web.config under the section he
       <compiler type="Stitch.Compilers.JavaScriptCompiler, Stitch.Core"/>
     </compilers>
   </stitch>
+
+</configuration>
 ```
+
+You can configure several different options here.
 
 The first section <paths> contains a entry for each directory you want compiled into the same application file. Each directory here will compile all sub directories.
 
