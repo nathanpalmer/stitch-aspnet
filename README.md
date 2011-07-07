@@ -24,20 +24,22 @@ This reference will get caught by the HttpHandler and compile the stiched versio
 
 The nuget package will add a new section to your Web.config under the section header <stitch>. You can configure several different options here.
 
->  <stitch>
->    <paths>
->      <path>scripts/app</path>
->    </paths>
->
->    <dependencies>
->      <file>lib/dep.js</file>
->    </dependencies>
->
->    <compilers>
->      <compiler type="Stitch.Compilers.CoffeeScriptCompiler, Stitch.Core"/>
->      <compiler type="Stitch.Compilers.JavaScriptCompiler, Stitch.Core"/>
->    </compilers>
->  </stitch>
+```xml
+  <stitch>
+    <paths>
+      <path>scripts/app</path>
+    </paths>
+
+    <dependencies>
+      <file>lib/dep.js</file>
+    </dependencies>
+
+    <compilers>
+      <compiler type="Stitch.Compilers.CoffeeScriptCompiler, Stitch.Core"/>
+      <compiler type="Stitch.Compilers.JavaScriptCompiler, Stitch.Core"/>
+    </compilers>
+  </stitch>
+```
 
 The first section <paths> contains a entry for each directory you want compiled into the same application file. Each directory here will compile all sub directories.
 
@@ -49,15 +51,17 @@ The third section <compilers> lists out the different compilers that are possibl
 
 Another option to generate your application is through the Stitch.exe command line application. The options are as follows.
 
-> Stitch Command Line Compiler 0.1.0.14
-> Copyright (C) 2011 Nathan Palmer
-> http://github.com/nathanpalmer/stitch-aspnet
-> 
-> Stitch [destination] options
-> 
->   -r, --root=VALUE           Root path (default is working directory)
->   -p, --paths=VALUE          Comma delimited list of paths that should be compiled
->   -d, --dep=VALUE            Comma delimited list of dependencies that should be included
->   -i, --identifier=VALUE     Identifier to use for including other files (default is require)
->   -c, --compilers=VALUE      Comma delimited list of compilers to use (default is CoffeeScriptCompiler, JavaScriptCompiler)
-
+```
+Stitch Command Line Compiler 0.1.0.14
+Copyright (C) 2011 Nathan Palmer
+http://github.com/nathanpalmer/stitch-aspnet
+ 
+Stitch [destination] options
+ 
+  -r, --root=VALUE           Root path (default is working directory)
+  -p, --paths=VALUE          Comma delimited list of paths that should be compiled
+  -d, --dep=VALUE            Comma delimited list of dependencies that should be included
+  -i, --identifier=VALUE     Identifier to use for including other files (default is require)
+  -c, --compilers=VALUE      Comma delimited list of compilers to use (default is CoffeeScriptCompiler, JavaScriptCompiler)
+```
+```
