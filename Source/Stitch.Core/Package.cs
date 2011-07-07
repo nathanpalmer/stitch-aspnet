@@ -26,9 +26,12 @@ namespace Stitch
         {
             var sw = new StringWriter();
 
-            foreach (var dep in Dependencies)
+            if (Dependencies != null)
             {
-                sw.Write(File.ReadAllText(Path.Combine(Root, dep)));
+                foreach (var dep in Dependencies)
+                {
+                    sw.Write(File.ReadAllText(Path.Combine(Root, dep)));
+                }
             }
 
             sw.Write(@"

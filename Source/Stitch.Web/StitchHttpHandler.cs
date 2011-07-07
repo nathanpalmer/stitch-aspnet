@@ -10,43 +10,65 @@ namespace Stitch.Web
     {
         private static readonly StitchConfigurationSection.StitchConfiguration configuration;
         private static readonly List<ICompile> compilers;
+        private static Exception exception;
 
         static StitchHttpHandler()
         {
-            configuration = (StitchConfigurationSection.StitchConfiguration)ConfigurationManager.GetSection("stitch");
-
-            compilers = new List<ICompile>();
-            foreach(var compiler in configuration.Compilers)
+            try
             {
-                compilers.Add((ICompile) Activator.CreateInstance(Type.GetType(compiler.Type)));
+                configuration = (StitchConfigurationSection.StitchConfiguration) ConfigurationManager.GetSection("stitch");
+
+                compilers = new List<ICompile>();
+                foreach (var compiler in configuration.Compilers)
+                {
+                    compilers.Add((ICompile) Activator.CreateInstance(Type.GetType(compiler.Type)));
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
             }
         }
 
         public void ProcessRequest(HttpContext context)
         {
-            Package package;
-            var file = configuration.Files.Where(f => f.Name.Equals(context.Request.Path, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-            if (file != null)
+            try
             {
-                package = new Package(
-                    context.Server.MapPath("."),
-                    file.Paths,
-                    file.Dependencies,
-                    file.Identifier ?? configuration.Identifier ?? "require",
-                    compilers);
-            }
-            else
-            {
-                package = new Package(
-                    context.Server.MapPath("."),
-                    configuration.Paths,
-                    configuration.Dependencies,
-                    configuration.Identifier ?? "require",
-                    compilers);
-            }
+                if (exception != null) throw exception;
 
-            context.Response.ContentType = "text/javascript";
-            context.Response.Write(package.Compile());
+                Package package = null;
+                if (configuration.Files != null)
+                {
+                    var file = configuration.Files.Where(f => f.Name.Equals(context.Request.Path, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                    if (file != null)
+                    {
+                        package = new Package(
+                            context.Server.MapPath("."),
+                            file.Paths,
+                            file.Dependencies,
+                            file.Identifier ?? configuration.Identifier ?? "require",
+                            compilers);
+                    }
+                }
+                
+                if (package == null)
+                {
+                    package = new Package(
+                        context.Server.MapPath("."),
+                        configuration.Paths,
+                        configuration.Dependencies,
+                        configuration.Identifier ?? "require",
+                        compilers);
+                }
+
+                context.Response.ContentType = "text/javascript";
+                context.Response.Write(package.Compile());
+            }
+            catch (Exception ex)
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("EXCEPTION: " + ex);
+            }
         }
 
         public bool IsReusable
