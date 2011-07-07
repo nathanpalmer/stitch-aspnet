@@ -22,5 +22,7 @@
               target="lib" />
         <file src="LICENSE.txt"
               target="" />
+        <file src="Web.config.transform"
+              target="content" />
     </files>
 </package>

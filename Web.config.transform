@@ -1,17 +1,9 @@
-﻿<?xml version="1.0"?>
-
-<!--
-  For more information on how to configure your ASP.NET application, please visit
-  http://go.microsoft.com/fwlink/?LinkId=169433
-  -->
-
 <configuration>
   <configSections>
     <section name="stitch" type="Stitch.Web.StitchConfigurationSection, Stitch.Web"/>
   </configSections>
 
   <system.web>
-    <compilation debug="true" targetFramework="4.0" />
     <httpHandlers>
       <add type="Stitch.Web.StitchHttpHandler, Stitch.Web" verb="*" path="*.stitch" />
     </httpHandlers>
@@ -19,11 +11,10 @@
 
   <stitch>
     <paths>
-      <path>scripts/app</path>
+      <path>Scripts\App</path>
     </paths>
 
     <dependencies>
-      <file>lib/dep.js</file>
     </dependencies>
 
     <compilers>
@@ -31,5 +22,4 @@
       <compiler type="Stitch.Compilers.JavaScriptCompiler, Stitch.Core"/>
     </compilers>
   </stitch>
-
 </configuration>

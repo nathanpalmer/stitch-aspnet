@@ -74,6 +74,7 @@
   <ItemGroup>
     <None Include="app\controllers\controller1.coffee" />
     <None Include="app\controllers\controller2.coffee" />
+    <None Include="scripts\app\controllers\test.coffee" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stitch.Web\Stitch.Web.csproj">
