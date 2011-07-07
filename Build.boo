@@ -26,6 +26,7 @@ target default:
     call binaries
     call compile
     call package
+    call nuget
   except e:
     print e
   
