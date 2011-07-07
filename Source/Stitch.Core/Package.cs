@@ -89,7 +89,7 @@ namespace Stitch
 
             foreach (var path in Paths)
             {
-                var rootPath = Path.Combine(Root, path).Replace("/", "\\") + "\\";
+                var rootPath = Path.Combine(Root, path).Replace("/", "\\").ToLower() + "\\";
                 var i = 0;
                 foreach(var item in GatherSources(new FileInfo(rootPath)))
                 {

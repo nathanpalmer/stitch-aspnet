@@ -61,8 +61,10 @@ namespace Stitch.Web
                         compilers);
                 }
 
-                context.Response.ContentType = "text/javascript";
-                context.Response.Write(package.Compile());
+                context.Response.ContentType = "application/x-javascript";
+                var content = package.Compile();
+                context.Response.AddHeader("Content-Length", content.Length.ToString());
+                context.Response.Write(content);
             }
             catch (Exception ex)
             {

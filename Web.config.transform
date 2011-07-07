@@ -8,6 +8,12 @@
       <add type="Stitch.Web.StitchHttpHandler, Stitch.Web" verb="*" path="*.stitch" />
     </httpHandlers>
   </system.web>
+  
+  <system.webServer>
+    <handlers>
+      <add type="Stitch.Web.StitchHttpHandler, Stitch.Web" verb="*" path="*.stitch" name="StitchCompiler" />
+    </handlers>
+  </system.webServer>  
 
   <stitch>
     <paths>
@@ -20,6 +26,18 @@
     <compilers>
       <compiler type="Stitch.Compilers.CoffeeScriptCompiler, Stitch.Core"/>
       <compiler type="Stitch.Compilers.JavaScriptCompiler, Stitch.Core"/>
+      <compiler type="Stitch.Compilers.jQueryTemplateCompiler, Stitch.Core"/>
     </compilers>
+    
+    <files>
+      <!-- Same xml options as above, configured on a per file basis -->
+      <!--
+      <file name="/application.stitch">
+        <paths>
+          <path>Scripts\App</path>
+        </paths>
+      </file>
+      -->
+    </files>
   </stitch>
 </configuration>

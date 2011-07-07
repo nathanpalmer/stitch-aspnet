@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch.Web", "Stitch.Web\St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch", "Stitch\Stitch.csproj", "{AF9A9F79-1218-474B-A783-01EB29D8B2EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stitch.Tests.Web.Mvc3", "Stitch.Tests.Web.Mvc3\Stitch.Tests.Web.Mvc3.csproj", "{7E709657-2B95-412B-81DA-A076529E8AF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,16 @@ Global
 		{AF9A9F79-1218-474B-A783-01EB29D8B2EE}.Release|Mixed Platforms.Build.0 = Release|x86
 		{AF9A9F79-1218-474B-A783-01EB29D8B2EE}.Release|x86.ActiveCfg = Release|x86
 		{AF9A9F79-1218-474B-A783-01EB29D8B2EE}.Release|x86.Build.0 = Release|x86
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7E709657-2B95-412B-81DA-A076529E8AF9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
