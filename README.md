@@ -66,6 +66,12 @@ The second section <dependencies> will be included in the application file but w
 
 The third section <compilers> lists out the different compilers that are possible. Currently there is a CoffeeScriptCompiler and a JavaScriptCompiler. 
 
+# ASP.NET MVC
+
+In order for this to work in ASP.NET MVC you need to set it up to ignore the stitch files in your routing. Adding this line after the axd ignore should do it.
+
+> routes.IgnoreRoute("{*stitch}", new { stitch = @".*\.stitch(/.*)?" });
+
 # Command Line
 
 Another option to generate your application is through the Stitch.exe command line application. The options are as follows.

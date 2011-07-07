@@ -93,8 +93,13 @@ namespace Stitch
                 var i = 0;
                 foreach(var item in GatherSources(new FileInfo(rootPath)))
                 {
+                    var itemName = item.FullName.ToLower().Replace(rootPath, "").Replace("\\", "/");
+                    if (!string.IsNullOrWhiteSpace(item.Extension))
+                    {
+                        itemName = itemName.Replace(item.Extension, "");
+                    }
                     sw.Write(i == 0 ? "" : ", ");
-                    sw.Write(string.Format("\"{0}\"", item.FullName.ToLower().Replace(rootPath,"").Replace("\\", "/").Replace(item.Extension,"")));
+                    sw.Write(string.Format("\"{0}\"", itemName));
                     sw.Write(": function(exports, require, module) ");
 
                     var compiler = Compilers.Where(c => c.Handles(item.Extension)).Single();
@@ -121,7 +126,11 @@ namespace Stitch
             }
             else
             {
-                yield return new FileInfo(Item.FullName);
+                var file = new FileInfo(Item.FullName);
+                if (file.Exists)
+                {
+                    yield return file;
+                }
             }
         }
     }
