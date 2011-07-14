@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4C897D61-CAE7-457B-B8BA-F50E3976012C}</ProjectGuid>
+    <ProjectGuid>{5396FBA5-AD23-4FF9-A909-3B5E6686D71D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Stitch.Web</RootNamespace>
-    <AssemblyName>Stitch.Web</AssemblyName>
+    <RootNamespace>Stitch.Nancy</RootNamespace>
+    <AssemblyName>Stitch.Nancy</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,10 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Nancy">
+      <HintPath>..\..\Libraries\Nancy.0.6.0\lib\4.0\Nancy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,17 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\SolutionVersion.cs">
-      <Link>Properties\SolutionVersion.cs</Link>
-    </Compile>
-    <Compile Include="StitchConfigurationSection.cs" />
-    <Compile Include="StitchHttpHandler.cs" />
+    <Compile Include="Stitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stitch.Core\Stitch.Core.csproj">
       <Project>{E477FDCE-5F05-400E-B2F3-F568896CF2F2}</Project>
       <Name>Stitch.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
