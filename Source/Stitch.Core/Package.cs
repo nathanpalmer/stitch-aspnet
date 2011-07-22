@@ -102,7 +102,9 @@ namespace Stitch
                     sw.Write(string.Format("\"{0}\"", itemName));
                     sw.Write(": function(exports, require, module) ");
 
-                    var compiler = Compilers.Where(c => c.Handles(item.Extension)).Single();
+                    var compiler = Compilers.Where(c => c.Handles(item.Extension)).FirstOrDefault();
+                    if (compiler == null) return null; // Just returning if there isn't a compiler for this handler. Could possibly handle this differently
+
                     sw.Write("{" + compiler.Compile(item) + "}");
 
                     i++;
