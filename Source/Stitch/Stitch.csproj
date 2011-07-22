@@ -53,6 +53,10 @@
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Stitch.Compilers.CoffeeScript\Stitch.Compilers.CoffeeScript.csproj">
+      <Project>{2B0A3FCE-E1A9-4067-9AC9-980492D6392C}</Project>
+      <Name>Stitch.Compilers.CoffeeScript</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Stitch.Core\Stitch.Core.csproj">
       <Project>{E477FDCE-5F05-400E-B2F3-F568896CF2F2}</Project>
       <Name>Stitch.Core</Name>

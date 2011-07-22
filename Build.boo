@@ -36,7 +36,12 @@ target clean:
   rmdir("Build")
   
 target binaries:
-  exec("Tools\\NuGet\\NuGet.exe install ${solution_folder}\\Stitch.Core\\packages.config -o Libraries")
+  with FileList(solution_folder):
+    .Include("*")
+    .ForEach def(file):
+        packages_config = Path.Combine(file.FullName,"packages.config")
+        if Directory.Exists(file.FullName) and File.Exists(packages_config):
+            exec("Tools\\NuGet\\NuGet.exe install ${packages_config} -o Libraries") 
   
 target compile:
   print "Compiling ${solution_file}"
@@ -93,12 +98,18 @@ target assemblyInfo, (getRevision):
     .copyright = String.Format("Copyright {0} {1}", DateTime.Now.Year, company)
     .comVisible = false
     .companyName = company
-    .productName = title    
+    .productName = title 
+    
+def createNuget(name as string, nuspec as string):
+  rm(name) if File.Exists(name)
+  file = StreamWriter(name)
+  file.Write(nuspec)
+  file.Close()
+  exec(".\\Tools\\NuGet\\NuGet.exe pack .\\${name} -OutputDirectory Build")
+  rm(name)
     
 target nuget, (assemblyInfo):
-  rm("Stitch.nuspec") if File.Exists("Stitch.nuspec")
-  file = StreamWriter("Stitch.nuspec")
-  file.Write("""<?xml version="1.0" encoding="utf-8"?>
+  createNuget("Stitch.nuspec", """<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Stitch</id>
@@ -126,7 +137,28 @@ target nuget, (assemblyInfo):
     </files>
 </package>
   """)
-  file.Close()
-  exec(""".\Tools\NuGet\NuGet.exe pack .\Stitch.nuspec -OutputDirectory Build""")
-  rm("Stitch.nuspec")
+  
+  createNuget("Stitch.Compilers.CoffeeScript.nuspec", """<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Stitch.Compilers.CoffeeScript</id>
+        <version>${version}</version>
+        <authors>Nathan Palmer</authors>
+        <description>CoffeeScript compiler for use with Stitch.</description>
+        <language>en-GB</language>
+        <projectUrl>https://github.com/nathanpalmer/stitch-aspnet</projectUrl>
+        <licenseUrl>https://github.com/nathanpalmer/stitch-aspnet/blob/master/LICENSE.txt</licenseUrl>
+        <dependencies>
+            <dependency id="SassAndCoffee.Core" version="1.0" />
+            <dependency id="Stitch" version="${version_major}.${version_minor}" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="Build\Release\Stitch.Compilers.CoffeeScript.dll"
+              target="lib" />
+        <file src="LICENSE.txt"
+              target="" />
+    </files>
+</package>
+  """)
   
