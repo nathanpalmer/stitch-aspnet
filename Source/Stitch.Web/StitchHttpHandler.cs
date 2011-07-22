@@ -8,7 +8,7 @@ namespace Stitch.Web
 {
     public class StitchHttpHandler : IHttpHandler
     {
-        private static readonly StitchConfigurationSection.StitchConfiguration configuration;
+        private static readonly StitchConfiguration configuration;
         private static readonly List<ICompile> compilers;
         private static Exception exception;
 
@@ -16,7 +16,7 @@ namespace Stitch.Web
         {
             try
             {
-                configuration = (StitchConfigurationSection.StitchConfiguration) ConfigurationManager.GetSection("stitch");
+                configuration = (StitchConfiguration) ConfigurationManager.GetSection("stitch");
 
                 compilers = new List<ICompile>();
                 foreach (var compiler in configuration.Compilers)
