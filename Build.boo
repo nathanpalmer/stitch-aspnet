@@ -5,10 +5,10 @@ import System.IO
 title            = "Stitch"
 company          = ""
 version_major    = 0
-version_minor    = 1
+version_minor    = 2
 version_build    = 0
 version_revision = 0
-version          = "0.1.0.0"
+version          = "0.2.0.0"
 repository_url   = ""
 repository_type  = "git"
 
@@ -77,11 +77,13 @@ target getRevision:
     
     parts = line.Split(char('-'))  
     
-    revision = 0
+    print parts[1]
+    
+    revision = -1
     if (int.TryParse(parts[1].Trim(),revision)):
       version_revision = revision
     
-  if (version_revision > 0):  
+  if (version_revision >= 0):  
     return
   else:
     raise "Unable to determine repository revision"
